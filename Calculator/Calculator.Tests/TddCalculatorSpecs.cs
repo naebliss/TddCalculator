@@ -135,6 +135,7 @@ namespace Calculator.Tests
             [Fact]
             public void Should_return_formatted_result()
             {
+                //arrange
                 var expected = new StringBuilder();
                 expected.AppendLine("         1");
                 expected.AppendLine("        +4");
@@ -144,12 +145,20 @@ namespace Calculator.Tests
                 expected.AppendLine("        +1");
                 expected.AppendLine("----------");
                 expected.AppendLine("total  5,5");
+                
+                TddCalculator sut = new TddCalculator(1);
 
+                //act
+                sut.Add(4);
+                sut.Subtract(2);
+                sut.Multiply(3);
+                sut.Divide(2);
+                sut.Add(1);
 
+                string actual = sut.Calculate();
 
-
-
-
+                //assert
+                Assert.Equal(expected.ToString(), actual);
             }
         }
     }
