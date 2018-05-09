@@ -17,11 +17,28 @@ namespace Calculator.Tests
             [Fact]
             public void Should_add_value_to_total()
             {
+                //arrange
+                TddCalculator sut = new TddCalculator();
+
+                //act
+                double actual = sut.Add(123.45);
+
+                //assert
+                Assert.Equal(123.45,actual);
             }
 
             [Fact]
             public void Should_add_two_values_together()
             {
+                //arrange
+                TddCalculator sut = new TddCalculator();
+
+                //act
+                sut.Add(123.45);
+                double actual = sut.Add(123.45);
+
+                //assert
+                Assert.Equal(246.90, actual);
             }
         }
 
