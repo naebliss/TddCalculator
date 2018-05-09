@@ -24,7 +24,7 @@ namespace Calculator.Tests
                 double actual = sut.Add(123.45);
 
                 //assert
-                Assert.Equal(123.45,actual);
+                Assert.Equal(123.45, actual);
             }
 
             [Fact]
@@ -103,11 +103,27 @@ namespace Calculator.Tests
             [Fact]
             public void Should_divide_total_by_given_value()
             {
+                //arrange
+                TddCalculator sut = new TddCalculator(33);
+
+                //act
+                double actual = sut.Divide(11);
+
+                //assert
+                Assert.Equal(3, actual);
             }
 
             [Fact]
             public void Should_throw_exception_for_divide_by_zero_error()
             {
+                //arrange
+                TddCalculator sut = new TddCalculator(33);
+
+                //act
+                var actual = Assert.Throws<Exception>(() => sut.Divide(0));
+
+                //assert
+                Assert.Equal("cannot divide by zero", actual.Message);
             }
         }
 

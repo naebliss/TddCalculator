@@ -1,4 +1,6 @@
-﻿namespace Calculator
+﻿using System;
+
+namespace Calculator
 {
     public class TddCalculator
     {
@@ -22,6 +24,14 @@
         public double Multiply(double value)
         {
             return _total *= value;
+        }
+
+        public double Divide(double value)
+        {
+            if (value.Equals(default(double)))
+                throw new Exception("cannot divide by zero");
+
+            return _total / value;
         }
     }
 }
