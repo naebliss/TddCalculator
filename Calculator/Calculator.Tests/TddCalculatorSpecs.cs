@@ -83,6 +83,14 @@ namespace Calculator.Tests
             [Fact]
             public void Should_multiply_total_with_given_value()
             {
+                //arrange
+                TddCalculator sut = new TddCalculator(2);
+
+                //act
+                double actual = sut.Multiply(123.45);
+
+                //assert
+                Assert.Equal(246.90, actual);
             }
         }
 
