@@ -2,9 +2,21 @@
 
 The Tdd Calculator is a exercise to create a calculator class using the following specs
 
-- the calculator should have add method that returns the total
-- the calculator should have subtract method that returns the total
-- the calculator should have multiply method that returns the total
-- the calculator should have divide method that returns the total 
+- the calculator should have a add method that adds the result to the current total returns the total
+- the calculator should have a subtract method that subtracts the result from the current total  returns the total
+- the calculator should have a multiply method that multiplies the current total and returns the total
+- the calculator should have a divide method that divides the current total and returns the total 
 - the calculator should throw a exception with the text 'cannot divide by zero' when a divide by zero exception occurs
-- the calculator should have a calculate function that returns a formatted string with all subtotals and the endresult
+- the calculator should have a calculate function that returns a formatted string with all calculations and the endresult
+
+example of formatted text
+```
+         1
+        +4
+        -2
+        *3
+        /2
+        +1
+----------
+total  5,5
+```  
