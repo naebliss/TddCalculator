@@ -8,5 +8,10 @@
         {
             return _total += value;
         }
+
+        public double Subtract(double value)
+        {
+            return _total -= value;
+        }
     }
 }

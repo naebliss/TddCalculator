@@ -50,11 +50,28 @@ namespace Calculator.Tests
             [Fact]
             public void Should_subtract_value_from_total()
             {
+                //arrange
+                TddCalculator sut = new TddCalculator();
+
+                //act
+                double actual = sut.Subtract(123.45);
+
+                //assert
+                Assert.Equal(-123.45, actual);
             }
 
             [Fact]
             public void Should_subtract_two_values()
             {
+                //arrange
+                TddCalculator sut = new TddCalculator();
+
+                //act
+                sut.Subtract(123.45);
+                double actual = sut.Subtract(123.45);
+
+                //assert
+                Assert.Equal(-246.90, actual);
             }
         }
 
