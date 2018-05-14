@@ -139,9 +139,17 @@ namespace Calculator.Tests
                 var expected = new StringBuilder();
                 expected.AppendLine("         1");
                 expected.AppendLine("        +4");
+                expected.AppendLine("----------");
+                expected.AppendLine("sub      5");
                 expected.AppendLine("        -2");
+                expected.AppendLine("----------");
+                expected.AppendLine("sub      3");
                 expected.AppendLine("        *3");
+                expected.AppendLine("----------");
+                expected.AppendLine("sub      9");
                 expected.AppendLine("        /2");
+                expected.AppendLine("----------");
+                expected.AppendLine("sub    4,5");
                 expected.AppendLine("        +1");
                 expected.AppendLine("----------");
                 expected.AppendLine("total  5,5");

@@ -7,31 +7,33 @@ namespace Calculator
     {
         private double _total;
 
-        private const int calculationWidth = 10;
-        private StringBuilder calculations = new StringBuilder();
+        private readonly ICalculationFormatter _formatter;
 
         public TddCalculator(int initialValue = 0)
         {
             _total = initialValue;
-            AddCalculation("",initialValue);
+            _formatter = new CalculationFormatter(initialValue);
         }
 
         public double Add(double value)
         {
-            AddCalculation("+", value);
-            return _total += value;
+            _total += value;
+            _formatter.AddCalculation("+", value, _total);
+            return _total;
         }
 
         public double Subtract(double value)
         {
-            AddCalculation("-", value);
-            return _total -= value;
+            _total -= value;
+            _formatter.AddCalculation("-", value, _total);
+            return _total;
         }
 
         public double Multiply(double value)
         {
-            AddCalculation("*", value);
-            return _total *= value;
+            _total *= value;
+            _formatter.AddCalculation("*", value, _total);
+            return _total;
         }
 
         public double Divide(double value)
@@ -39,20 +41,14 @@ namespace Calculator
             if (value.Equals(default(double)))
                 throw new Exception("cannot divide by zero");
 
-            AddCalculation("/", value);
-            return _total = _total / value;
+            _total = _total / value;
+            _formatter.AddCalculation("/", value, _total);
+            return _total;
         }
 
         public string Calculate()
         {
-            calculations.AppendLine(new string('-', calculationWidth));
-            calculations.AppendLine($"total  {_total:F1}");
-            return calculations.ToString();
-        }
-
-        private void AddCalculation(string operation, double value)
-        {
-            calculations.AppendLine($"{operation}{value:F0}".PadLeft(calculationWidth));
+            return _formatter.Format();
         }
     }
 }
