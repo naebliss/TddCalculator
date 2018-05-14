@@ -4,5 +4,6 @@
     {
         void AddCalculation(string operation, double value, double newTotal);
         string Format();
+        void SetInitialValue(double value);
     }
 }

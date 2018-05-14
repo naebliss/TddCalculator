@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 
 namespace Calculator
 {
@@ -9,10 +8,11 @@ namespace Calculator
 
         private readonly ICalculationFormatter _formatter;
 
-        public TddCalculator(int initialValue = 0)
+        public TddCalculator(ICalculationFormatter calculationFormatter, int initialValue = 0)
         {
             _total = initialValue;
-            _formatter = new CalculationFormatter(initialValue);
+            _formatter = calculationFormatter;
+            _formatter.SetInitialValue(initialValue);
         }
 
         public double Add(double value)

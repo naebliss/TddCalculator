@@ -5,13 +5,8 @@ namespace Calculator
 {
     public class CalculationFormatter : ICalculationFormatter
     {
-        private readonly int _initialValue;
+        private double _initialValue;
         private readonly List<Calculation> _calculations = new List<Calculation>();
-
-        public CalculationFormatter(int initialValue)
-        {
-            _initialValue = initialValue;
-        }
 
         public void AddCalculation(string operation, double value, double newTotal)
         {
@@ -42,12 +37,10 @@ namespace Calculator
 
             return sb.ToString();
         }
-    }
 
-    public class Calculation
-    {
-        public string Operation { get; set; }
-        public double Value { get; set; }
-        public double NewTotal { get; set; }
+        public void SetInitialValue(double value)
+        {
+            _initialValue = value;
+        }
     }
 }

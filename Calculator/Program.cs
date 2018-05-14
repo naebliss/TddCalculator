@@ -10,7 +10,7 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            TddCalculator calc = new TddCalculator();
+            TddCalculator calc = new TddCalculator(new CalculationFormatter());
         }
     }
 }

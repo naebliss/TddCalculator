@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Moq;
 using Xunit;
 
 namespace Calculator.Tests
@@ -18,7 +15,7 @@ namespace Calculator.Tests
             public void Should_add_value_to_total()
             {
                 //arrange
-                TddCalculator sut = new TddCalculator();
+                TddCalculator sut = new TddCalculator(Mock.Of<CalculationFormatter>());
 
                 //act
                 double actual = sut.Add(123.45);
@@ -31,7 +28,7 @@ namespace Calculator.Tests
             public void Should_add_two_values_together()
             {
                 //arrange
-                TddCalculator sut = new TddCalculator();
+                TddCalculator sut = new TddCalculator(Mock.Of<CalculationFormatter>());
 
                 //act
                 sut.Add(123.45);
@@ -51,7 +48,7 @@ namespace Calculator.Tests
             public void Should_subtract_value_from_total()
             {
                 //arrange
-                TddCalculator sut = new TddCalculator();
+                TddCalculator sut = new TddCalculator(Mock.Of<CalculationFormatter>());
 
                 //act
                 double actual = sut.Subtract(123.45);
@@ -64,7 +61,7 @@ namespace Calculator.Tests
             public void Should_subtract_two_values()
             {
                 //arrange
-                TddCalculator sut = new TddCalculator();
+                TddCalculator sut = new TddCalculator(Mock.Of<CalculationFormatter>());
 
                 //act
                 sut.Subtract(123.45);
@@ -84,7 +81,7 @@ namespace Calculator.Tests
             public void Should_multiply_total_with_given_value()
             {
                 //arrange
-                TddCalculator sut = new TddCalculator(2);
+                TddCalculator sut = new TddCalculator(Mock.Of<CalculationFormatter>(), 2);
 
                 //act
                 double actual = sut.Multiply(123.45);
@@ -104,7 +101,7 @@ namespace Calculator.Tests
             public void Should_divide_total_by_given_value()
             {
                 //arrange
-                TddCalculator sut = new TddCalculator(33);
+                TddCalculator sut = new TddCalculator(Mock.Of<CalculationFormatter>(), 33);
 
                 //act
                 double actual = sut.Divide(11);
@@ -117,7 +114,7 @@ namespace Calculator.Tests
             public void Should_throw_exception_for_divide_by_zero_error()
             {
                 //arrange
-                TddCalculator sut = new TddCalculator(33);
+                TddCalculator sut = new TddCalculator(Mock.Of<CalculationFormatter>(), 33);
 
                 //act
                 var actual = Assert.Throws<Exception>(() => sut.Divide(0));
@@ -136,25 +133,12 @@ namespace Calculator.Tests
             public void Should_return_formatted_result()
             {
                 //arrange
-                var expected = new StringBuilder();
-                expected.AppendLine("         1");
-                expected.AppendLine("        +4");
-                expected.AppendLine("----------");
-                expected.AppendLine("sub      5");
-                expected.AppendLine("        -2");
-                expected.AppendLine("----------");
-                expected.AppendLine("sub      3");
-                expected.AppendLine("        *3");
-                expected.AppendLine("----------");
-                expected.AppendLine("sub      9");
-                expected.AppendLine("        /2");
-                expected.AppendLine("----------");
-                expected.AppendLine("sub    4,5");
-                expected.AppendLine("        +1");
-                expected.AppendLine("----------");
-                expected.AppendLine("total  5,5");
-                
-                TddCalculator sut = new TddCalculator(1);
+                var expected = "formatted result";
+
+                var formatterMock = new Mock<ICalculationFormatter>();
+                formatterMock.Setup(m => m.Format()).Returns(expected);
+
+                TddCalculator sut = new TddCalculator(formatterMock.Object, 1);
 
                 //act
                 sut.Add(4);
@@ -166,7 +150,7 @@ namespace Calculator.Tests
                 string actual = sut.Calculate();
 
                 //assert
-                Assert.Equal(expected.ToString(), actual);
+                Assert.Equal(expected, actual);
             }
         }
     }
